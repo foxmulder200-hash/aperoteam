@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APERO TEAM — Saucissons 4,50€</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rouge:  #8B1A1A;
+    --rouge2: #C0392B;
+    --cream:  #FDF6EC;
+    --brun:   #3E1F0D;
+    --brun2:  #6B3A2A;
+    --or:     #C9933A;
+    --or2:    #E8B96A;
+    --vert:   #2E5E2E;
+    --blanc:  #FFFDF8;
+    --gris:   #8A7A70;
+    --shadow: rgba(62,31,13,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; background: var(--cream); color: var(--brun); overflow-x: hidden; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23C9933A' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, var(--brun) 0%, #5C2A1A 55%, var(--rouge) 100%);
+    padding: 56px 20px 76px; text-align: center; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,147,58,0.05) 20px, rgba(201,147,58,0.05) 21px);
+  }
+  .hero-badge {
+    display: inline-block; background: var(--or); color: var(--brun);
+    font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+    padding: 6px 18px; border-radius: 2px; margin-bottom: 18px;
+    animation: fadeDown .6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    color: var(--cream); line-height: 1.1; margin-bottom: 14px;
+    animation: fadeDown .6s .1s ease both;
+  }
+  .hero h1 em { font-style: italic; color: var(--or2); }
+  .hero-sub {
+    font-size: clamp(.95rem, 2vw, 1.2rem); color: rgba(253,246,236,.8);
+    font-weight: 300; letter-spacing: .05em; margin-bottom: 36px;
+    animation: fadeDown .6s .2s ease both;
+  }
+  .price-badge {
+    display: inline-flex; flex-direction: column; align-items: center;
+    background: var(--cream); border: 3px solid var(--or); border-radius: 12px;
+    padding: 16px 36px;
+    animation: popIn .5s .4s cubic-bezier(.34,1.56,.64,1) both;
+    box-shadow: 0 8px 40px rgba(0,0,0,.3);
+  }
+  .price-label  { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gris); font-weight: 700; }
+  .price-amount { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; font-size: 3.4rem; color: var(--rouge); font-weight: 900; line-height: 1; }
+  .price-unit   { font-size: .82rem; color: var(--brun2); }
+  .hero-scroll  { margin-top: 36px; color: rgba(253,246,236,.45); font-size: .78rem; letter-spacing: .1em; animation: fadeDown .6s .6s ease both; }
+  .hero-scroll span { display: block; margin-top: 6px; font-size: 1.3rem; animation: bounce 1.5s infinite; }
+
+  .wave { width: 100%; overflow: hidden; line-height: 0; background: var(--brun); }
+  .wave svg { display: block; }
+
+  /* STEPS */
+  .steps-wrap { background: var(--cream); padding: 50px 20px 20px; position: relative; z-index: 1; }
+  .sec-title { font-family:'Playfair Display',serif; font-size:clamp(1.5rem,3.5vw,2.2rem); color:var(--brun); text-align:center; margin-bottom:6px; }
+  .sec-title::after { content:''; display:block; width:50px; height:3px; background:var(--or); margin:10px auto 0; border-radius:2px; }
+  .sec-sub { text-align:center; color:var(--gris); font-size:.88rem; margin-bottom:32px; }
+  .steps { display:flex; flex-wrap:wrap; gap:16px; max-width:860px; margin:0 auto; }
+  .step { flex:1; min-width:180px; background:var(--blanc); border-radius:14px; padding:24px 18px; text-align:center; box-shadow:0 4px 18px var(--shadow); border-top:4px solid var(--or); }
+  .step-num { width:40px; height:40px; background:var(--or); color:var(--brun); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; margin:0 auto 12px; }
+  .step h3 { font-family:'Playfair Display',serif; font-size:.95rem; margin-bottom:5px; }
+  .step p  { font-size:.82rem; color:var(--gris); line-height:1.5; }
+
+  /* FILTER */
+  .filter-wrap { max-width:980px; margin:0 auto; padding:44px 20px 0; position:relative; z-index:1; }
+  .filter-tabs { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:28px; }
+  .ftab {
+    padding:7px 16px; border-radius:30px; border:1.5px solid rgba(201,147,58,.4);
+    background:transparent; color:var(--brun2); font-family:'Lato',sans-serif;
+    font-size:.8rem; font-weight:700; cursor:pointer; transition:all .2s; letter-spacing:.03em;
+  }
+  .ftab:hover  { border-color:var(--or); color:var(--or); }
+  .ftab.active { background:var(--or); border-color:var(--or); color:var(--brun); }
+
+  /* PRODUCTS */
+  .products-grid {
+    max-width:980px; margin:0 auto; padding:0 20px 20px;
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:18px;
+    position:relative; z-index:1;
+  }
+  .product-card {
+    background:var(--blanc); border-radius:16px; overflow:hidden;
+    box-shadow:0 4px 22px var(--shadow); border:1px solid rgba(201,147,58,.18);
+    transition:transform .25s, box-shadow .25s; display:flex; flex-direction:column;
+  }
+  .product-card:hover { transform:translateY(-6px); box-shadow:0 14px 40px var(--shadow); }
+  .product-card.hidden { display:none; }
+  .product-top {
+    position:relative; background:linear-gradient(135deg,var(--brun),var(--brun2));
+    padding:24px 16px 16px; text-align:center;
+  }
+  .product-emoji { font-size:2.8rem; display:block; margin-bottom:4px; }
+  .product-tag {
+    position:absolute; top:10px; right:10px;
+    background:var(--or); color:var(--brun);
+    font-size:.6rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 7px; border-radius:3px;
+  }
+  .product-intensity { display:flex; justify-content:center; gap:4px; margin-top:6px; }
+  .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.2); }
+  .dot.on { background:var(--or2); }
+  .product-body { padding:15px; flex:1; display:flex; flex-direction:column; }
+  .product-name   { font-family:'Playfair Display',serif; font-size:1rem; color:var(--brun); margin-bottom:2px; }
+  .product-weight { font-size:.7rem; color:var(--gris); margin-bottom:6px; letter-spacing:.05em; }
+  .product-desc   { font-size:.82rem; color:var(--brun2); line-height:1.55; flex:1; margin-bottom:13px; }
+  .product-footer { display:flex; align-items:center; justify-content:space-between; }
+  .product-price  { font-family:'Playfair Display',serif; font-size:1.45rem; color:var(--rouge); font-weight:700; }
+  .product-price span { font-size:.72rem; color:var(--gris); font-family:'Lato',sans-serif; font-weight:400; }
+  .add-btn {
+    background:var(--rouge); color:#fff; border:none; padding:8px 12px; border-radius:8px;
+    font-family:'Lato',sans-serif; font-size:.78rem; font-weight:700; letter-spacing:.03em;
+    cursor:pointer; transition:background .2s, transform .1s; white-space:nowrap;
+  }
+  .add-btn:hover  { background:var(--rouge2); }
+  .add-btn:active { transform:scale(.96); }
+  .add-btn.added  { background:var(--vert); }
+
+  /* LOT */
+  .lot-wrap { max-width:980px; margin:10px auto 30px; padding:0 20px; position:relative; z-index:1; }
+  .lot-banner {
+    background:linear-gradient(135deg,var(--brun) 0%,var(--rouge) 100%);
+    border-radius:16px; padding:28px; color:var(--cream);
+    display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between;
+    box-shadow:0 8px 32px var(--shadow); position:relative; overflow:hidden;
+  }
+  .lot-banner::before { content:'🎁'; position:absolute; right:-8px; top:-10px; font-size:7rem; opacity:.07; }
+  .lot-title { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:4px; }
+  .lot-desc  { font-size:.84rem; opacity:.8; }
+  .lot-pills { display:flex; gap:12px; flex-wrap:wrap; }
+  .lot-pill {
+    background:rgba(255,255,255,.13); border:1.5px solid rgba(255,255,255,.3);
+    border-radius:40px; padding:8px 18px; text-align:center; cursor:pointer; transition:all .2s;
+  }
+  .lot-pill:hover,.lot-pill.sel { background:var(--or); border-color:var(--or); color:var(--brun); }
+  .lot-pill strong { display:block; font-family:'Playfair Display',serif; font-size:1.2rem; }
+  .lot-pill span   { font-size:.72rem; }
+
+  /* CART */
+  .cart-wrap { max-width:980px; margin:0 auto 50px; padding:0 20px; position:relative; z-index:1; }
+  .cart-box { background:var(--blanc); border:2px solid var(--or); border-radius:20px; padding:28px; box-shadow:0 6px 30px var(--shadow); }
+  .cart-title { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--brun); margin-bottom:16px; display:flex; align-items:center; gap:9px; }
+  .cart-empty { color:var(--gris); font-size:.88rem; text-align:center; padding:18px; }
+  .cart-item  { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px dashed rgba(201,147,58,.3); gap:8px; flex-wrap:wrap; }
+  .ci-name  { font-weight:700; color:var(--brun); flex:1; min-width:110px; font-size:.9rem; }
+  .ci-ctrl  { display:flex; align-items:center; gap:7px; }
+  .qty-btn  {
+    width:26px; height:26px; background:var(--cream); border:1.5px solid var(--or);
+    border-radius:6px; font-size:.95rem; cursor:pointer; color:var(--brun); font-weight:700;
+    display:flex; align-items:center; justify-content:center; transition:background .15s;
+  }
+  .qty-btn:hover { background:var(--or); color:#fff; }
+  .qty-n    { min-width:22px; text-align:center; font-weight:700; font-size:.9rem; }
+  .ci-total { font-family:'Playfair Display',serif; font-size:1rem; color:var(--rouge); font-weight:700; min-width:56px; text-align:right; }
+  .cart-total-row { display:flex; justify-content:space-between; align-items:center; padding-top:14px; margin-top:6px; flex-wrap:wrap; gap:8px; }
+  .ctl-label  { font-weight:700; font-size:.95rem; color:var(--brun2); }
+  .ctl-amount { font-family:'Playfair Display',serif; font-size:1.9rem; color:var(--rouge); font-weight:900; }
+  .note-field { margin-top:18px; }
+  .note-field label { font-size:.82rem; font-weight:700; color:var(--brun2); display:block; margin-bottom:5px; }
+  .note-field textarea {
+    width:100%; border:1.5px solid rgba(201,147,58,.35); border-radius:10px;
+    padding:10px; font-family:'Lato',sans-serif; font-size:.88rem; color:var(--brun);
+    background:var(--cream); resize:vertical; min-height:64px; outline:none; transition:border-color .2s;
+  }
+  .note-field textarea:focus { border-color:var(--or); }
+  .wa-btn {
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    width:100%; background:#25D366; color:#fff; border:none; padding:17px 22px; border-radius:14px;
+    font-family:'Lato',sans-serif; font-size:1.05rem; font-weight:700; letter-spacing:.02em;
+    cursor:pointer; margin-top:18px; text-decoration:none;
+    transition:background .2s, transform .1s, box-shadow .2s;
+    box-shadow:0 6px 22px rgba(37,211,102,.35);
+  }
+  .wa-btn:hover  { background:#1EBE58; box-shadow:0 8px 30px rgba(37,211,102,.5); }
+  .wa-btn:active { transform:scale(.98); }
+  .wa-btn svg    { width:26px; height:26px; flex-shrink:0; }
+  .wa-btn.disabled { background:#bbb; box-shadow:none; cursor:not-allowed; pointer-events:none; }
+
+  footer { background:var(--brun); color:rgba(253,246,236,.55); text-align:center; padding:28px 20px; font-size:.78rem; position:relative; z-index:1; }
+  footer strong { color:var(--or2); }
+
+  .toast {
+    position:fixed; bottom:22px; left:50%; transform:translateX(-50%) translateY(80px);
+    background:var(--vert); color:#fff; padding:11px 26px; border-radius:40px;
+    font-weight:700; font-size:.88rem; transition:transform .3s; z-index:999;
+    box-shadow:0 4px 18px rgba(0,0,0,.2);
+  }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:none} }
+  @keyframes popIn    { from{opacity:0;transform:scale(.7)} to{opacity:1;transform:scale(1)} }
+  @keyframes bounce   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+  @media(max-width:500px){
+    .hero{padding:36px 16px 56px;}
+    .cart-box,.lot-banner{padding:20px 16px;}
+    .products-grid,.filter-wrap,.lot-wrap,.cart-wrap{padding-left:12px;padding-right:12px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🏑 Offre exclusive clubs &amp; associations</div>
+  <h1><span style="font-size:1em;letter-spacing:.2em;text-transform:uppercase;color:var(--or2);font-style:normal;font-family:Playfair Display,serif;font-weight:900;display:block;margin-bottom:14px;text-shadow:0 2px 20px rgba(232,185,106,0.5);text-align:center;width:100%;white-space:nowrap;letter-spacing:.2em;">✦ Apero Team ✦</span>Les meilleurs saucissons<br><em>du terroir, livrés dans votre club</em></h1>
+  <p class="hero-sub">17 variétés artisanales · 160–180g · Commande directe par WhatsApp</p>
+  <div class="price-badge">
+    <span class="price-label">Prix spécial clubs</span>
+    <span class="price-amount">4,50€</span>
+    <span class="price-unit">le saucisson</span>
+  </div>
+  <p class="hero-scroll">Voir la sélection <span>↓</span></p>
+</section>
+
+<div class="wave">
+  <svg viewBox="0 0 1200 56" preserveAspectRatio="none" height="48" width="100%">
+    <path d="M0,0 C300,56 900,56 1200,0 L1200,56 L0,56 Z" fill="#FDF6EC"/>
+  </svg>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="steps-wrap">
+  <h2 class="sec-title">Comment commander ?</h2>
+  <p class="sec-sub" style="margin-top:14px;">Simple comme un message WhatsApp</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Choisissez vos variétés</h3><p>Parcourez les 17 saucissons, filtrez par famille, ajoutez ce qui vous tente.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Composez votre panier</h3><p>Ajustez les quantités, ajoutez une note si besoin (livraison, préférences).</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Envoyez sur WhatsApp</h3><p>Un clic génère et envoie votre commande complète automatiquement.</p></div>
+    <div class="step"><div class="step-num">4</div><h3>Retrait au club</h3><p>On confirme la date de livraison dans votre club sous 24h.</p></div>
+  </div>
+</div>
+
+<!-- FILTER + PRODUCTS -->
+<div class="filter-wrap">
+  <h2 class="sec-title">Nos 17 saucissons</h2>
+  <p class="sec-sub" style="margin-top:14px;">Tous en 160–180g · Produits artisanalement · 4,50 € le saucisson<br>
+    <small style="color:var(--gris);font-size:.75rem;">● = intensité du goût</small>
+  </p>
+  <div class="filter-tabs" id="filterTabs"></div>
+</div>
+
+<div class="products-grid" id="productsGrid"></div>
+
+<!-- LOT -->
+<div class="lot-wrap">
+  <div class="lot-banner">
+    <div>
+      <div class="lot-title">🎁 Commandez en lot</div>
+      <div class="lot-desc">Idéal pour tournois, fin de saison, soirées de club — répartition automatique sur toutes les variétés</div>
+    </div>
+    <div class="lot-pills">
+      <div class="lot-pill" onclick="addLot(10,this)"><strong>×10</strong><span>45,00 €</span></div>
+      <div class="lot-pill" onclick="addLot(20,this)"><strong>×20</strong><span>90,00 €</span></div>
+      <div class="lot-pill" onclick="addLot(50,this)"><strong>×50</strong><span>225,00 €</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cart-wrap">
+  <div class="cart-box">
+    <div class="cart-title">🛒 Votre commande</div>
+    <div id="cartItems"><p class="cart-empty">Aucun article — choisissez vos saucissons ci-dessus 👆</p></div>
+    <div id="cartTotalRow" class="cart-total-row" style="display:none">
+      <span class="ctl-label">Total commande</span>
+      <span class="ctl-amount" id="cartTotal">0,00 €</span>
+    </div>
+    <div class="note-field">
+      <label>📝 Note / précisions (optionnel)</label>
+      <textarea id="noteField" placeholder="Ex : livraison samedi après le match, allergies éventuelles, préférences..."></textarea>
+    </div>
+    <a href="#" id="waBtn" class="wa-btn disabled" onclick="sendWhatsApp(event)">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Commander sur WhatsApp
+    </a>
+  </div>
+</div>
+
+<footer>
+  <strong>🏑 Offre réservée aux clubs &amp; associations partenaires</strong><br>
+  <span style="display:block;margin-top:5px;">Saucissons artisanaux 160–180g · Belgique · 4,50 € / saucisson · Minimum 50 saucissons</span>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══ CONFIGURATION — À PERSONNALISER ════════════════
+const CONFIG = {
+  whatsappNumber: "32494682148",      // ← votre numéro belge sans le +  ex: 32475123456
+  nomVendeur:     "APERO TEAM", // ← votre prénom ou nom d'activité
+  prixUnite:      4.50,
+};
+
+// ═══ CATALOGUE COMPLET ══════════════════════════════
+const PRODUITS = [
+  { id:"espelette",   emoji:"🌶️", nom:"Piment d'Espelette", desc:"Légèrement relevé, très apprécié à l'apéro.",         tag:"Populaire",  cat:"Épicé",     intensite:2 },
+  { id:"ailours",     emoji:"🌿", nom:"Ail des Ours",        desc:"Parfumé et original, belle personnalité en bouche.",  tag:"Original",   cat:"Herbes",    intensite:2 },
+  { id:"comte",       emoji:"🧀", nom:"Comté",               desc:"Saveur fromagère affinée, valeur sûre.",              tag:"Bestseller", cat:"Fromage",   intensite:2 },
+  { id:"beaufort",    emoji:"🏔️", nom:"Beaufort",            desc:"Goût montagnard plus fin et plus rond.",              tag:"Fin",        cat:"Fromage",   intensite:1 },
+  { id:"noix",        emoji:"🌰", nom:"Noix",                desc:"Texture croquante et goût doux.",                     tag:"Doux",       cat:"Classique", intensite:1 },
+  { id:"camembert",   emoji:"🧀", nom:"Camembert",           desc:"Plus gourmand et crémeux.",                           tag:"Gourmand",   cat:"Fromage",   intensite:2 },
+  { id:"vinechalote", emoji:"🍷", nom:"Vin Échalote",        desc:"Notes aromatiques et touche bistrot.",                tag:"Original",   cat:"Classique", intensite:2 },
+  { id:"roquefort",   emoji:"💙", nom:"Roquefort Noix",      desc:"Puissant, généreux, très typé.",                      tag:"Intense",    cat:"Fromage",   intensite:3 },
+  { id:"herbesP",     emoji:"🌿", nom:"Herbes de Provence",  desc:"Parfum du sud, très facile à aimer.",                 tag:"Populaire",  cat:"Herbes",    intensite:1 },
+  { id:"faisan",      emoji:"✨", nom:"Faisan Cognac",       desc:"Version premium, subtile et festive.",                tag:"Premium",    cat:"Premium",   intensite:2 },
+  { id:"tomates",     emoji:"🍅", nom:"Tomates Séchées",     desc:"Saveur méditerranéenne ensoleillée.",                 tag:"Soleil",     cat:"Classique", intensite:1 },
+  { id:"ail",         emoji:"🧄", nom:"Ail",                 desc:"Grand classique, goût franc.",                        tag:"Classique",  cat:"Classique", intensite:2 },
+  { id:"taureau",     emoji:"🐂", nom:"Taureau",             desc:"Rustique, caractère plus marqué.",                    tag:"Caractère",  cat:"Classique", intensite:3 },
+  { id:"herbes",      emoji:"🌱", nom:"Herbes",              desc:"Simple, parfumé, très vendeur.",                      tag:"Simple",     cat:"Herbes",    intensite:1 },
+  { id:"figues",      emoji:"🍯", nom:"Figues",              desc:"Sucré-salé, original et gourmand.",                   tag:"Gourmand",   cat:"Classique", intensite:1 },
+  { id:"cinqbaies",   emoji:"🔮", nom:"5 Baies",             desc:"Équilibré, épicé sans excès.",                        tag:"Équilibré",  cat:"Épicé",     intensite:2 },
+  { id:"pimentfort",  emoji:"🔥", nom:"Piment Fort",         desc:"Pour amateurs de sensations fortes.",                 tag:"Très épicé", cat:"Épicé",     intensite:3 },
+];
+
+// ═══ FILTRES ════════════════════════════════════════
+const CATS = ["Tous","Classique","Fromage","Herbes","Épicé","Premium"];
+let activeFilter = "Tous";
+let cart = {};
+
+const tabsEl = document.getElementById('filterTabs');
+CATS.forEach(c => {
+  const btn = document.createElement('button');
+  btn.className = 'ftab' + (c==='Tous'?' active':'');
+  const count = c==='Tous' ? PRODUITS.length : PRODUITS.filter(p=>p.cat===c).length;
+  btn.textContent = `${c} (${count})`;
+  btn.onclick = () => {
+    activeFilter = c;
+    document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card=>{
+      card.classList.toggle('hidden', activeFilter!=='Tous' && card.dataset.cat!==activeFilter);
+    });
+  };
+  tabsEl.appendChild(btn);
+});
+
+// Render cards
+const grid = document.getElementById('productsGrid');
+PRODUITS.forEach(p => {
+  const dots = [1,2,3].map(i=>`<span class="dot${i<=p.intensite?' on':''}"></span>`).join('');
+  const div = document.createElement('div');
+  div.className = 'product-card';
+  div.dataset.cat = p.cat;
+  const safeName = p.nom.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  div.innerHTML = `
+    <div class="product-top">
+      <span class="product-emoji">${p.emoji}</span>
+      <span class="product-tag">${p.tag}</span>
+      <div class="product-intensity" title="Intensité du goût">${dots}</div>
+    </div>
+    <div class="product-body">
+      <div class="product-name">${p.nom}</div>
+      <div class="product-weight">Saucisson · 160–180g</div>
+      <div class="product-desc">${p.desc}</div>
+      <div class="product-footer">
+        <div class="product-price">4,50€ <span>/ sauc.</span></div>
+        <button class="add-btn" id="btn-${p.id}" onclick="addToCart('${p.id}','${safeName}')">+ Panier</button>
+      </div>
+    </div>`;
+  grid.appendChild(div);
+});
+
+// ═══ PANIER ═════════════════════════════════════════
+function addToCart(id, nom) {
+  if (!cart[id]) cart[id] = { nom, qty:0 };
+  cart[id].qty++;
+  renderCart();
+  showToast('✅ ' + nom + ' ajouté !');
+  const btn = document.getElementById('btn-'+id);
+  btn.textContent = '✓ Ajouté !';
+  btn.classList.add('added');
+  setTimeout(()=>{ btn.textContent='+ Panier'; btn.classList.remove('added'); }, 1200);
+}
+
+function addLot(qty, el) {
+  document.querySelectorAll('.lot-pill').forEach(p=>p.classList.remove('sel'));
+  el.classList.add('sel');
+  const n = PRODUITS.length;
+  PRODUITS.forEach((p, i) => {
+    if (!cart[p.id]) cart[p.id] = { nom:p.nom, qty:0 };
+    cart[p.id].qty += Math.floor(qty/n) + (i < qty%n ? 1 : 0);
+  });
+  renderCart();
+  showToast('✅ Lot de '+qty+' saucissons ajouté !');
+  document.querySelector('.cart-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function updateQty(id, d) {
+  if (!cart[id]) return;
+  cart[id].qty += d;
+  if (cart[id].qty <= 0) delete cart[id];
+  renderCart();
+}
+
+function renderCart() {
+  const items = Object.entries(cart).filter(([,v])=>v.qty>0);
+  const el = document.getElementById('cartItems');
+  const tr = document.getElementById('cartTotalRow');
+  const wa = document.getElementById('waBtn');
+  if (!items.length) {
+    el.innerHTML='<p class="cart-empty">Aucun article — choisissez vos saucissons ci-dessus 👆</p>';
+    tr.style.display='none'; wa.classList.add('disabled'); return;
+  }
+  let total = 0;
+  el.innerHTML = items.map(([id,v])=>{
+    const sub = v.qty * CONFIG.prixUnite; total += sub;
+    return `<div class="cart-item">
+      <span class="ci-name">${v.nom}</span>
+      <div class="ci-ctrl">
+        <button class="qty-btn" onclick="updateQty('${id}',-1)">−</button>
+        <span class="qty-n">${v.qty}</span>
+        <button class="qty-btn" onclick="updateQty('${id}',1)">+</button>
+      </div>
+      <span class="ci-total">${sub.toFixed(2).replace('.',',')} €</span>
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotal').textContent = total.toFixed(2).replace('.',',') + ' €';
+  tr.style.display='flex'; wa.classList.remove('disabled');
+}
+
+function sendWhatsApp(e) {
+  e.preventDefault();
+  const items = Object.entries(cart).filter(([,v])=>v.qty>0);
+  if (!items.length) return;
+  const total    = items.reduce((s,[,v])=>s+v.qty*CONFIG.prixUnite,0);
+  const totalQty = items.reduce((s,[,v])=>s+v.qty,0);
+  const note = document.getElementById('noteField').value.trim();
+  const lignes = items.map(([,v])=>`  • ${v.nom} × ${v.qty} = ${(v.qty*CONFIG.prixUnite).toFixed(2)} €`).join('\n');
+  let msg = `🏑 *Commande Saucissons*\n\nBonjour ${CONFIG.nomVendeur} !\nJe souhaite commander :\n\n${lignes}\n\n*Total : ${totalQty} saucisson${totalQty>1?"s":""} — ${total.toFixed(2)} €*`;
+  if (note) msg += `\n\n📝 Note : ${note}`;
+  msg += '\n\nMerci !';
+  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2000);
+}
+</script>
+<!-- MENTIONS LÉGALES -->
+<section id="mentions" style="background:var(--brun);color:rgba(253,246,236,0.75);padding:50px 20px;position:relative;z-index:1;">
+  <div style="max-width:860px;margin:0 auto;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--or2);margin-bottom:6px;text-align:center;">Mentions légales</h2>
+    <div style="width:40px;height:2px;background:var(--or);margin:10px auto 32px;border-radius:2px;"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;font-size:.85rem;line-height:1.8;">
+      <div>
+        <p style="color:var(--or2);font-weight:700;margin-bottom:8px;">&#128203; Éditeur du site</p>
+        <p><strong style="color:var(--cream);">AperoTeam</strong></p>
+        <p>Société de droit belge</p>
+        <p>Numéro BCE : 0559.712.269</p>
+        <p>Siège social : Avenue Schaller 50, 1160 Bruxelles</p>
+        <p>WhatsApp : <a href="https://wa.me/32494682148" style="color:var(--or2);text-decoration:none;">+32 494 68 21 48</a></p>
+      </div>
+      <div>
+        <p style="color:var(--or2);font-weight:700;margin-bottom:8px;">&#128722; Conditions de vente</p>
+        <p>Les commandes sont passées via WhatsApp et confirmées par retour de message. Le paiement s&#39;effectue à la livraison sauf accord préalable. Prix en euros TTC. Minimum de commande : 50 saucissons.</p>
+      </div>
+      <div>
+        <p style="color:var(--or2);font-weight:700;margin-bottom:8px;">&#128274; Données personnelles (RGPD)</p>
+        <p>Les données collectées (nom, numéro WhatsApp) sont utilisées uniquement pour le traitement de votre commande. Elles ne sont ni vendues ni transmises à des tiers. Droit d&#39;accès et de suppression : contactez-nous via WhatsApp.</p>
+      </div>
+      <div>
+        <p style="color:var(--or2);font-weight:700;margin-bottom:8px;">&#9878; Responsabilité</p>
+        <p>AperoTeam s&#39;engage à proposer des produits conformes aux normes sanitaires belges et européennes. En cas de réclamation, contactez-nous dans les 24h suivant la livraison. Juridiction : Tribunaux de Bruxelles, droit belge applicable.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:32px;font-size:.75rem;opacity:.5;">© 2025 AperoTeam · BCE 0559.712.269 · Avenue Schaller 50, 1160 Bruxelles</p>
+  </div>
+</section>
+
+</body>
+</html>
